@@ -2,6 +2,9 @@ package org.genc.app.SneakoAplication.dto;
 
 import java.math.BigDecimal;
 import java.util.Set;
+
+import jakarta.annotation.Nullable;
+import jakarta.validation.constraints.NotNull;
 import lombok.Value; // Using @Value for immutable DTOs is often preferred
 import org.genc.app.SneakoAplication.dto.CartItemDTO;
 
@@ -13,9 +16,11 @@ import org.genc.app.SneakoAplication.dto.CartItemDTO;
 public class CartDTO {
 
     // Primary identifier of the cart
+    @Nullable
     private final Long id;
 
     // Foreign key reference to the Users entity, simplified to an ID
+    @NotNull(message = "Enter the user Id")
     private final Long userId;
 
     // Collection of items in the cart, represented by their DTOs

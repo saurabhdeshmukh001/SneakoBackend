@@ -39,6 +39,7 @@ public class CartItemServiceImpl implements CartItemService {
                 .unitPrice(unitPrice)
                 .quantity(quantity)
                 .totalPrice(totalPrice)
+                .size(cartItemDTO.getSize()) // ✅ Add this
                 .build();
 
         cartItemRepository.save(cartItem);
@@ -64,6 +65,7 @@ public class CartItemServiceImpl implements CartItemService {
                 .unitPrice(cartItem.getUnitPrice())
                 .quantity(cartItem.getQuantity())
                 .totalPrice(cartItem.getTotalPrice())
+                .size(cartItem.getSize()) // ✅ Add this
                 .build();
     }
 
@@ -108,6 +110,7 @@ public class CartItemServiceImpl implements CartItemService {
                 .quantity(cartItem.getQuantity())
                 .unitPrice(cartItem.getUnitPrice())
                 .totalPrice(cartItem.getTotalPrice())
+                .size(cartItem.getSize()) // ✅ Add this
                 .build();
     }
 }
