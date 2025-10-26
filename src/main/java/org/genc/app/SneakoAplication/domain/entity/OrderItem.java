@@ -1,6 +1,5 @@
 package org.genc.app.SneakoAplication.domain.entity;
 
-import jakarta.annotation.Nullable;
 import jakarta.persistence.*;
 import lombok.*;
 import org.hibernate.annotations.CreationTimestamp;
@@ -10,33 +9,31 @@ import java.math.BigDecimal;
 import java.time.LocalDateTime;
 
 @Entity
-@Table(name = "cart_item")
+@Table(name = "order_item")
 @Getter
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-public class CartItem {
+public class OrderItem {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long cartItemId;
+    private Long orderItemId;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "cart_id", nullable = false)
+    @JoinColumn(name = "order_id", nullable = false)
     @ToString.Exclude
-    private Cart cart;
+    private Order order;
 
     private Long productId;
 
-    private BigDecimal unitPrice;
-
     private Long quantity;
+
+    private BigDecimal unitPrice;
 
     private BigDecimal totalPrice;
 
-    // ✅ New field
-    @Column(nullable = false)
     private Long size;
 
     @CreationTimestamp
@@ -44,4 +41,6 @@ public class CartItem {
 
     @UpdateTimestamp
     private LocalDateTime updatedAt;
+
+
 }

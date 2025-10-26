@@ -1,6 +1,5 @@
 package org.genc.app.SneakoAplication.domain.entity;
 
-import jakarta.annotation.Nullable;
 import jakarta.persistence.*;
 import lombok.*;
 import org.hibernate.annotations.CreationTimestamp;
@@ -8,40 +7,38 @@ import org.hibernate.annotations.UpdateTimestamp;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
+import java.util.List;
 
 @Entity
-@Table(name = "cart_item")
-@Getter
-@Setter
+@Table(name = "order_tbl")
+@Data
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-public class CartItem {
+public class Order {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long cartItemId;
+    private Long orderId;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "cart_id", nullable = false)
-    @ToString.Exclude
-    private Cart cart;
+    private Long userId;
 
-    private Long productId;
-
-    private BigDecimal unitPrice;
-
-    private Long quantity;
+    @Column(length = 512)
+    private String shippingAddress;
 
     private BigDecimal totalPrice;
 
-    // ✅ New field
-    @Column(nullable = false)
-    private Long size;
+    private String orderStatus;
+
+    private LocalDateTime orderDate;
 
     @CreationTimestamp
     private LocalDateTime createdAt;
 
     @UpdateTimestamp
     private LocalDateTime updatedAt;
+
+
+    @OneToMany(mappedBy = "order", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    private List<OrderItem> orderItems;
 }

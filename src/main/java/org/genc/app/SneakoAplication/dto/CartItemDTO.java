@@ -34,5 +34,9 @@ public class CartItemDTO {
     private BigDecimal totalPrice;
 
     @NotNull(message = "User ID is required")
-    private Long userId; // ✅ Add this field
+    private Long userId;
+
+    // ✅ New field
+    @NotNull(message = "Size is required")
+    private Long size;
 }
